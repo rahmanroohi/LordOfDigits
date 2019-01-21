@@ -70,7 +70,7 @@ public class timer : MonoBehaviour {
 			h = h+ (int)(t/3600);
 			m =m+ (int) ((t % 3600)/60);
 			float s =((t % 3600) % 60);
-			TimerText.GetComponent<Text>().text =h + ":" + m + ":" + s.ToString("0.00");
+			TimerText.GetComponent<Text>().text =h.ToString() + ":" + m.ToString() + ":" + s.ToString("0.00");
 			Debug.Log(t);
 		}
 
