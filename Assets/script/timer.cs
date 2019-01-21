@@ -46,7 +46,7 @@ public class timer : MonoBehaviour {
 	void Update () {
 
 		if(sharedobj.getPlayersCount() != 1)
-		{
+		{ // مود چند نفره
 			if(StartTime >= 0.0f &&  cancount)
 			{
 				StartTime -= Time.deltaTime ;
@@ -80,7 +80,12 @@ public class timer : MonoBehaviour {
 			m = ((int)t/60);
 			string s = (t % 60).ToString("f2");
 			TimerText.GetComponent<Text>().text = m.ToString() + ":" + s;
-			Debug.Log(t);
+			//Debug.Log(t);
+			if(sharedobj.getCurentNumber() > sharedobj.getCountNum())
+			{
+				sharedobj.setRecordOnePersonMode(m.ToString() + ":" + s);
+			}
+
 		}
 
 
@@ -135,23 +140,23 @@ public class timer : MonoBehaviour {
 		
 	}
 
-	private List<GameObject> convertToList(GameObject[] AllBall)
-	{
-		List<GameObject> ListBall = new List<GameObject>();
-		for (int i = 0; i < AllBall.Length; i++)
-		{
-			ListBall.Add(AllBall[i]);
+	// private List<GameObject> convertToList(GameObject[] AllBall)
+	// {
+	// 	List<GameObject> ListBall = new List<GameObject>();
+	// 	for (int i = 0; i < AllBall.Length; i++)
+	// 	{
+	// 		ListBall.Add(AllBall[i]);
 			
-		}
-		return ListBall;
-	}
+	// 	}
+	// 	return ListBall;
+	// }
 
-	void Awake()
-	{
-		//GameObject[] obj1 = GameObject.FindGameObjectsWithTag("scroll") ;
-		//DontDestroyOnLoad();
-		//DontDestroyOnLoad(GameObject.Find("Scrolball"));
-		GameObject[] obj = GameObject.FindGameObjectsWithTag("GameSharedPublic") ;
-		DontDestroyOnLoad(obj[0]);
-	}
+	// void Awake()
+	// {
+	// 	//GameObject[] obj1 = GameObject.FindGameObjectsWithTag("scroll") ;
+	// 	//DontDestroyOnLoad();
+	// 	//DontDestroyOnLoad(GameObject.Find("Scrolball"));
+	// 	GameObject[] obj = GameObject.FindGameObjectsWithTag("GameSharedPublic") ;
+	// 	DontDestroyOnLoad(obj[0]);
+	// }
 }

@@ -42,50 +42,11 @@ public class AllShared : MonoBehaviour {
 	public int CurentNumber;
 
 	[HideInInspector]
+	public string RecordOnePersonMode;
+
+	[HideInInspector]
 	public GameObject[] Balls;
 
-
-	[HideInInspector]
-	
-
-	/*
-	[HideInInspector]
-	public List<GameObject> blocksList;
-	[HideInInspector]
-	public List<GameObject> cloudBlocksList;
-	[HideInInspector]
-	public List<int[]> baseBlocksCoordinateList;
-	[HideInInspector]
-	public List<Color> baseBlocksColors;
-	
-	[HideInInspector]
-	public List<Button> buttonsList;
-	[HideInInspector]
-	public int mafiaGuyNumber;
-	
-	[HideInInspector]
-	public Vector3 moveToCoordinate;
-	[HideInInspector]
-	public string moveToBlockName;
-	[HideInInspector]
-	public int revealedBaseBlockOwner;
-	[HideInInspector]
-	public bool isKillingMove;
-	[HideInInspector]
-	public int lastCivilianKilledNumber;
-	[HideInInspector]
-	public List<int> killedCivilianList;
-	
-	[HideInInspector]
-	public List<int[]> toolsbaseCoordinateList;
-
-	[HideInInspector]
-	public Vector3 toolsCoordinate;
-	[HideInInspector]
-	public int toolsOwnerNumber;
-	[HideInInspector]
-	public bool toolsUsed;
-	*/
 
 	public AllShared () {
 		playersCount = 0;
@@ -116,6 +77,11 @@ public class AllShared : MonoBehaviour {
 	{
 		playersCount = count;
 	}
+
+	public void setRecordOnePersonMode(string Record)
+	{
+		RecordOnePersonMode = Record;
+	}
 	public void setBallsVector3(List<Vector3> count)
 	{
 		BallsVector3 = count;
@@ -140,40 +106,10 @@ public class AllShared : MonoBehaviour {
 		TimerForEveryone = time;
 	}
 
-	// public void setBlocksList(List<GameObject> list)
-	// {
-	// 	blocksList = list;
-	// }
-
-	// public void setCloudBlocksList(List<GameObject> list)
-	// {
-	// 	cloudBlocksList = list;
-	// }
-
-	// public void setBaseBlocksCoordinateList(List<int[]> list)
-	// {
-	// 	baseBlocksCoordinateList = list;
-	// }
-
-	// public void setBaseBlocksColors(List<Color> list)
-	// {
-	// 	baseBlocksColors = list;
-	// }
-
 	public void setPlayersList(List<GameObject> list)
 	{
 		playersList = list;
 	}
-
-	// public void setButtonsList(List<Button> list)
-	// {
-	// 	buttonsList = list;
-	// }
-
-	// public void setMafiaGuyNumber(int number)
-	// {
-	// 	mafiaGuyNumber = number;
-	// }
 
 	public void setPlayersTurn(int turn)
 	{
@@ -194,36 +130,6 @@ public class AllShared : MonoBehaviour {
 	{
 		isFirstRound = isFirst;
 	}
-
-	// public void setIsKillingMove(bool isKilling)
-	// {
-	// 	isKillingMove = isKilling;
-	// }
-
-	// public void setLastCivilianKilled(int number)
-	// {
-	// 	lastCivilianKilledNumber = number;
-	// }
-
-	// public void setMoveToCoordinate(Vector3 destination)
-	// {
-	// 	moveToCoordinate = destination;
-	// }
-
-	// public void setMoveToBlockName(string name)
-	// {
-	// 	moveToBlockName = name;
-	// }
-
-	// public void setRevealedBaseBlockOwner(int number)
-	// {
-	// 	revealedBaseBlockOwner = number;
-	// }
-
-	// public void setKilledCivilianList(List<int> list)
-	// {
-	// 	killedCivilianList = list;
-	// }
 
 	public void setPlayersScoreList(int[] list)
 	{
@@ -250,18 +156,16 @@ public class AllShared : MonoBehaviour {
 		toolsOwnerNumber = list;
 	}
 
-	// public void settoolsbaseCoordinateList(List<int[]> list)
-	// {
-	// 	toolsbaseCoordinateList = list;
-	// }
-
 
 	public int getPlayersCount()
 	{
 		return playersCount;
 	}
-
 	
+	public string getRecordOnePersonMode()
+	{
+		return RecordOnePersonMode;
+	}
 	public List<Vector3> getBallsVector3()
 	{
 		return BallsVector3 ;
@@ -290,26 +194,6 @@ public class AllShared : MonoBehaviour {
 		return HardLevel;
 	}
 
-	// public List<GameObject> getBlocksList()
-	// {
-	// 	return blocksList;
-	// }
-
-	// public List<GameObject> getCloudBlocksList()
-	// {
-	// 	return cloudBlocksList;
-	// }
-
-	// public List<int[]> getBaseBlocksCoordinateList()
-	// {
-	// 	return baseBlocksCoordinateList;
-	// }
-
-	// public List<Color> getBaseBlocksColors()
-	// {
-	// 	return baseBlocksColors;
-	// }
-
 	public List<GameObject> getPlayersList()
 	{
 		return playersList;
@@ -319,16 +203,6 @@ public class AllShared : MonoBehaviour {
 	{
 		return Balls;
 	}
-
-	// public List<Button> getButtonsList()
-	// {
-	// 	return buttonsList;
-	// }
-
-	// public int getMafiaGuyNumber()
-	// {
-	// 	return mafiaGuyNumber;
-	// }
 
 	public int getPlayersTurn()
 	{
@@ -344,36 +218,6 @@ public class AllShared : MonoBehaviour {
 	{
 		return isFirstRound;
 	}
-
-	// public bool getIsKillingMove()
-	// {
-	// 	return isKillingMove;
-	// }
-
-	// public Vector3 getMoveToCoordinate()
-	// {
-	// 	return moveToCoordinate;
-	// }
-
-	// public string getMoveToBlockName()
-	// {
-	// 	return moveToBlockName;
-	// }
-
-	// public int getRevealedBaseBlockOwner()
-	// {
-	// 	return revealedBaseBlockOwner;
-	// }
-
-	// public int getLastCivilianKilled()
-	// {
-	// 	return lastCivilianKilledNumber;
-	// }
-
-	// public List<int> getKilledCivilianList()
-	// {
-	// 	return killedCivilianList;
-	// }
 
 	public int[] getPlayersScoreList()
 	{
@@ -396,8 +240,5 @@ public class AllShared : MonoBehaviour {
 		return toolsOwnerNumber;
 	}
 
-	// public List<int[]> gettoolsbaseCoordinateList()
-	// {
-	// 	return toolsbaseCoordinateList;
-	// }
+	
 }
