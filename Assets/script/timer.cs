@@ -26,9 +26,16 @@ public class timer : MonoBehaviour {
 		GameObject gameSharedPreference = GameObject.FindGameObjectWithTag("GameSharedPublic") ;
 		//GameObject gameSharedPreference = GameObject.Find("GameShared");
 		sharedobj =  gameSharedPreference.GetComponent<AllShared>();
-		StartTime = float.Parse(sharedobj.getTimerForEveryone());
-		sharedobj.setPlayersCount(1);
+		if(sharedobj.getPlayersCount() != 1)
+		{
+			StartTime = float.Parse(sharedobj.getTimerForEveryone());
+		}else
+		{
+			StartTime = 0;
+		}
+		
 		TimerText = GameObject.Find("Timer") ;
+		
 	}
 	
 	public void Starter()
@@ -66,11 +73,13 @@ public class timer : MonoBehaviour {
 		else
 		{ // مود تک نفره
 			//StartTime = 0.0f;
-			float t =Time.time;
-			h = h+ (int)(t/3600);
-			m =m+ (int) ((t % 3600)/60);
-			float s =((t % 3600) % 60);
-			TimerText.GetComponent<Text>().text =h.ToString() + ":" + m.ToString() + ":" + s.ToString("0.00");
+			float t = Time.time  ;
+			// h = h+ (int)(t/3600);
+			// m =m+ (int) ((t % 3600)/60);
+			// float s =((t % 3600) % 60);
+			m = ((int)t/60);
+			string s = (t % 60).ToString("f2");
+			TimerText.GetComponent<Text>().text = m.ToString() + ":" + s;
 			Debug.Log(t);
 		}
 
