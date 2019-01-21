@@ -16,12 +16,19 @@ public class timer : MonoBehaviour {
 	private List<Vector3> BallVector3_temp;
 	private List<string> BallNames_temp;
 	bool act =true;
+
+	int h = 0;
+	int m = 0;
+
+	GameObject TimerText;
 	// Use this for initialization
 	void Start () {
 		GameObject gameSharedPreference = GameObject.FindGameObjectWithTag("GameSharedPublic") ;
 		//GameObject gameSharedPreference = GameObject.Find("GameShared");
 		sharedobj =  gameSharedPreference.GetComponent<AllShared>();
 		StartTime = float.Parse(sharedobj.getTimerForEveryone());
+		sharedobj.setPlayersCount(1);
+		TimerText = GameObject.Find("Timer") ;
 	}
 	
 	public void Starter()
@@ -30,29 +37,42 @@ public class timer : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if(StartTime >= 0.0f &&  cancount)
-		{
-			StartTime -= Time.deltaTime ;
-			//alarm.SetActive(true);
-			//Debug.Log((int) StartTime + "    " + (int)StartTime % 2);
-			if( ((int) StartTime <= 5) && ((int)StartTime % 2 == 1)  &&  cancount)
-			{
 
-				alarm.SetActive(act)	 ;
-				act = !act;
+		if(sharedobj.getPlayersCount() != 1)
+		{
+			if(StartTime >= 0.0f &&  cancount)
+			{
+				StartTime -= Time.deltaTime ;
+				//alarm.SetActive(true);
+				//Debug.Log((int) StartTime + "    " + (int)StartTime % 2);
+				if( ((int) StartTime <= 5) && ((int)StartTime % 2 == 1)  &&  cancount)
+				{
+
+					alarm.SetActive(act)	 ;
+					act = !act;
+					//Debug.Log(StartTime);
+				}
+			}
+			else if (StartTime <= 0.0f && !doonce)
+			{
+				cancount = false;
+				doonce = true;
+				StartTime = 0.0f;
 				//Debug.Log(StartTime);
+				alarm.SetActive(false)	 ;
+				EndTime();
 			}
 		}
-		else if (StartTime <= 0.0f && !doonce)
-		{
-			cancount = false;
-			doonce = true;
-			StartTime = 0.0f;
-			//Debug.Log(StartTime);
-			alarm.SetActive(false)	 ;
-			EndTime();
+		else
+		{ // مود تک نفره
+			//StartTime = 0.0f;
+			float t =Time.time;
+			h = h+ (int)(t/3600);
+			m =m+ (int) ((t % 3600)/60);
+			float s =((t % 3600) % 60);
+			TimerText.GetComponent<Text>().text =h + ":" + m + ":" + s.ToString("0.00");
+			Debug.Log(t);
 		}
-
 
 
 		// float t =Time.time - StartTime;
